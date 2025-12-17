@@ -22,92 +22,56 @@
         <div class="pokemon character">
             <span class="lvl">Lv. 1</span>
 
-            <img src="https://avatanplus.com/files/resources/original/57c058630d7c7156c75942ef.png"
+            <img id="img-player1" 
+                 src=""
                  class="sprite glow-electric"
                  alt="Pikachu">
 
             <div class="details">
-                <h2 class="name" id="name-character">
-                    Pikachu
-                </h2>
-
+                <h2 class="name" id="name-player1"></h2>
                 <div class="hp">
                     <div class="bar">
-                        <div class="health" id="progressbar-character" style="width: 100%;"></div>
+                        <div class="health" id="progressbar-player1" style="width: 100%;"></div>
                     </div>
-                    <span class="text" id="health-character">100 / 100</span>
+                    <span class="text" id="health-player1">100 / 100</span>
                 </div>
             </div>
         </div>
 
-        <div class="control">
-            <button class="button" id="btn-kick">
-                Thunder Jolt
-            </button>
-            <div class="click-info">
-                Залишилось натискань: <span id="kick-left"></span>
-            </div>
-        </div>
-
-        <div id="logs" class="control" aria-live="polite"></div>
-
-        <div class="control">
-            <button class="button" id="btn-ult">
-                Ult Kick
-            </button>
-            <div class="click-info">
-                Залишилось натискань: <span id="ult-left"></span>
-            </div>
-        </div>
+    <div class="control">
+    </div>
 
         <div class="pokemon enemy">
             <span class="lvl">Lv. 1</span>
 
-            <img src="https://unite.pokemon.com/images/pokemon/charizard/stat/stat-charizard.png"
+            <img id="img-player2" 
+                 src=""
                  class="sprite glow-fire"
                  alt="Charmander">
 
             <div class="details">
-                <h2 class="name" id="name-enemy">
-                    Charmander
-                </h2>
+                <h2 class="name" id="name-player2"></h2>
                 <div class="hp">
                     <div class="bar">
-                        <div class="health" id="progressbar-enemy" style="width: 100%;"></div>
+                        <div class="health" id="progressbar-player2" style="width: 100%;"></div>
                     </div>
-                    <span class="text" id="health-enemy">100 / 100</span>
+                    <span class="text" id="health-player2">100 / 100</span>
                 </div>
             </div>
         </div>
-
-        <div class="pokemon enemy">
-            <span class="lvl">Lv. 1</span>
-
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
-                 class="sprite glow-nature"
-                 alt="Bulbasaur">
-
-            <div class="details">
-                <h2 class="name" id="name-enemy2">
-                    Bulbasaur
-                </h2>
-                <div class="hp">
-                    <div class="bar">
-                        <div class="health" id="progressbar-enemy2" style="width: 100%;"></div>
-                    </div>
-                    <span class="text" id="health-enemy2">100 / 100</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 
+
+
+<div class="logs" id="logs">
+    </div>
+
 <div class="catch_screen"></div>
 
-<script src="logs.js"></script>
-<script src="utils.js"></script>
-<script src="pokemon.js"></script>
-<script src="game.js"></script>
+<script src="pokemons.js" type="module"></script>
+<script src="utils.js" type="module"></script>
+<script src="pokemon.js" type="module"></script>
+<script src="main.js" type="module"></script>
 </body>
 </html>

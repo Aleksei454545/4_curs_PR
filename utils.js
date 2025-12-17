@@ -1,25 +1,24 @@
+// utils.js
 
-const random = (num) => Math.ceil(Math.random() * num);
+export const random = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-function createClickCounter(limit, onChange) {
-  let count = 0; 
+export const countBtn = (maxCount, $btn) => {
+    let count = maxCount;
+    const originalText = $btn.innerText.trim();
+    $btn.innerText = `${originalText} (${count})`;
+    
+    return function() {
+        if (count > 0) {
+            count--;
+            $btn.innerText = `${originalText} (${count})`;
 
-  return function (buttonName) {
-    if (count >= limit) {
-      console.log(
-        `Кнопка "${buttonName}" більше не активна! Ліміт ${limit} натискань.`
-      );
-      if (onChange) onChange(0);
-      return false;
+            if (count === 0) {
+                $btn.disabled = true;
+            }
+            return true;
+        }
+        return false;
     }
-
-    count++;
-    const left = limit - count;
-
-    console.log(
-      `Кнопка "${buttonName}" натиснута ${count} раз(и). Залишилось: ${left}`
-    );
-    if (onChange) onChange(left);
-    return true;
-  };
-}
+};

@@ -1,78 +1,63 @@
-class Pokemon {
-  constructor({ name, maxHP, hpId, barId, logger, onDead }) {
-    this.name = name;
-    this.maxHP = maxHP;
-    this.currentHP = maxHP;
 
-    this.elHP = document.getElementById(hpId);
-    this.elBar = document.getElementById(barId);
+export default class Pokemon {
+    constructor({ name, hp, type, selectors, attacks = [], img }) {
+        this.name = name;
+        this.type = type;
+        this.img = img;
+        
+        this.hp = {
+            current: hp,
+            total: hp,
+        };
+        this.attacks = attacks; 
+        this.selectors = selectors;
 
-    this.logger = logger;   
-    this.onDead = onDead;   
-  }
+        this.elHP = document.getElementById(`health-${selectors}`);
+        this.elProgress = document.getElementById(`progressbar-${selectors}`);
+        this.elName = document.getElementById(`name-${selectors}`);
+        this.elImg = document.getElementById(`img-${selectors}`); 
 
-  get isAlive() {
-    return this.currentHP > 0;
-  }
-
-  renderHPLife() {
-    if (this.elHP) {
-      this.elHP.innerText = `${this.currentHP} / ${this.maxHP}`;
+        this.renderName();
+        this.renderHP();
+        this.renderImg(); 
     }
-  }
 
-  renderProgressbarHP() {
-    if (!this.elBar) return;
-
-    const percent = (this.currentHP / this.maxHP) * 100;
-    this.elBar.style.width = percent + '%';
-
-    if (percent > 60) this.elBar.className = 'health';
-    else if (percent > 20) this.elBar.className = 'health low';
-    else this.elBar.className = 'health critical';
-  }
-
-  render() {
-    this.renderHPLife();
-    this.renderProgressbarHP();
-  }
-
-  takeDamage(count, attackerName) {
-    const prevHP = this.currentHP;
-
-    if (this.currentHP <= count) {
-      this.currentHP = 0;
-
-      if (this.logger) {
-        this.logger({
-          attacker: attackerName,
-          target: this.name,
-          damage: prevHP,
-          left: 0,
-          total: this.maxHP,
-        });
-      }
-
-      this.render();
-      alert(`${this.name} повержен!`);
-
-      if (this.onDead) {
-        this.onDead(this);
-      }
-    } else {
-      this.currentHP -= count;
-
-      if (this.logger) {
-        this.logger({
-          attacker: attackerName,
-          target: this.name,
-          damage: count,
-          left: this.currentHP,
-          total: this.maxHP,
-        });
-      }
-
-      this.render();
+    get isAlive() {
+        return this.hp.current > 0;
     }
-  }
+
+    renderHP = () => {
+        if (!this.elProgress || !this.elHP) return;
+
+        const percent = (this.hp.current / this.hp.total) * 100;
+        this.elProgress.style.width = `${percent}%`;
+        this.elHP.innerText = `${this.hp.current} / ${this.hp.total}`;
+        
+        this.elProgress.classList.remove('low', 'critical');
+        if (percent <= 60 && percent > 20) {
+            this.elProgress.classList.add('low');
+        } else if (percent <= 20) {
+            this.elProgress.classList.add('critical');
+        }
+    }
+
+    renderImg = () => {
+        if (this.elImg && this.img) {
+            this.elImg.src = this.img; 
+        }
+    }
+
+    changeHP = (count, cb) => {
+        this.hp.current -= count;
+        if (this.hp.current < 0) {
+            this.hp.current = 0;
+        }
+
+        this.renderHP();
+        if (cb) cb(count); 
+    }
+    
+    renderName = () => {
+        if (this.elName) this.elName.innerText = this.name;
+    }
 }
