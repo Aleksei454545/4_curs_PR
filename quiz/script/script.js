@@ -10,85 +10,116 @@ document.addEventListener("DOMContentLoaded",()=>{
     const nextButton = document.querySelector("#next");
     const sendButton = document.querySelector("#send");
 
-    
-    const questions = [
-    {
-        question: "Якого кольору бургер?",
-        answers: [
-            {
-                title: 'Стандарт',
-                url: './image/burger.png'
-            },
-            {
-                title: 'Чорний',
-                url: './image/burgerBlack.png'
-            }
-        ],
-        type: 'radio'
-    },
-    {
-        question: "З якого м'яса котлета?",
-        answers: [
-            {
-                title: 'Курка',
-                url: './image/chickenMeat.png'
-            },
-            {
-                title: 'Яловичина',
-                url: './image/beefMeat.png'
-            },
-            {
-                title: 'Свинина',
-                url: './image/porkMeat.png'
-            }
-        ],
-        type: 'radio'
-    },
-    {
-        question: "Додаткові інгредієнти ?",
-        answers: [
-            {
-                title: 'Помідор',
-                url: './image/tomato.png'
-            },
-            {
-                title: 'Огірок',
-                url: './image/cucumber.png'
-            },
-            {
-                title: 'Салат',
-                url: './image/salad.png'
-            },
-            {
-                title: 'Цибуля',
-                url: './image/onion.png'
-            }
-        ],
-        type: 'checkbox'
-    },
-    {
-        question: "Додати соус?",
-        answers: [
-            {
-                title: 'Часниковий',
-                url: './image/sauce1.png'
-            },
-            {
-                title: 'Томатний',
-                url: './image/sauce2.png'
-            },
-            {
-                title: 'Гірчичний',
-                url: './image/sauce3.png'
-            }
-        ],
-        type: 'radio'
+    const firebaseConfig = {
+    apiKey: "AIzaSyCikpXVTid7CBBriQAnUGWh42mLciu2vhU",
+    authDomain: "myfarebase-e6863.firebaseapp.com",
+    databaseURL: "https://myfarebase-e6863-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "myfarebase-e6863",
+    storageBucket: "myfarebase-e6863.firebasestorage.app",
+    messagingSenderId: "1064151502964",
+    appId: "1:1064151502964:web:5add2038b0e99929dc8121",
+    measurementId: "G-TZCR19ZS44"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  window.db = firebase.database();
+  firebase.database().ref('/').child('questions').once('value')
+    .then((snap) => console.log(snap.val()));
+
+
+    const getData = () => {
+        formAnswers.textContent = "LOAD";
+
+        setTimeout(() => {
+        fetch('./questions.json') 
+            .then(res => res.json())
+            .then(obj => playTest(obj.questions))
+            .catch(err => {
+              formAnswers.textContent = "Error load data";
+              console.error(err);
+            })
+        }, 1000);
     }
-];
+
+    
+//     const questions = [
+//     {
+//         question: "Якого кольору бургер?",
+//         answers: [
+//             {
+//                 title: 'Стандарт',
+//                 url: './image/burger.png'
+//             },
+//             {
+//                 title: 'Чорний',
+//                 url: './image/burgerBlack.png'
+//             }
+//         ],
+//         type: 'radio'
+//     },
+//     {
+//         question: "З якого м'яса котлета?",
+//         answers: [
+//             {
+//                 title: 'Курка',
+//                 url: './image/chickenMeat.png'
+//             },
+//             {
+//                 title: 'Яловичина',
+//                 url: './image/beefMeat.png'
+//             },
+//             {
+//                 title: 'Свинина',
+//                 url: './image/porkMeat.png'
+//             }
+//         ],
+//         type: 'radio'
+//     },
+//     {
+//         question: "Додаткові інгредієнти ?",
+//         answers: [
+//             {
+//                 title: 'Помідор',
+//                 url: './image/tomato.png'
+//             },
+//             {
+//                 title: 'Огірок',
+//                 url: './image/cucumber.png'
+//             },
+//             {
+//                 title: 'Салат',
+//                 url: './image/salad.png'
+//             },
+//             {
+//                 title: 'Цибуля',
+//                 url: './image/onion.png'
+//             }
+//         ],
+//         type: 'checkbox'
+//     },
+//     {
+//         question: "Додати соус?",
+//         answers: [
+//             {
+//                 title: 'Часниковий',
+//                 url: './image/sauce1.png'
+//             },
+//             {
+//                 title: 'Томатний',
+//                 url: './image/sauce2.png'
+//             },
+//             {
+//                 title: 'Гірчичний',
+//                 url: './image/sauce3.png'
+//             }
+//         ],
+//         type: 'radio'
+//     }
+// ];
 
     btnOpenModal.addEventListener("click",()=>{
         modalBlock.classList.add("d-block");   
-        playTest();
+        getData();
 
         
     })
@@ -97,7 +128,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     });
 
-const playTest = () => {
+const playTest = (questions) => {
   let finalAnswers = []; 
   let numberQuestion = 0;
 
