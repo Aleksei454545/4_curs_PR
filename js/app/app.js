@@ -75,17 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 50);
             },
             page(path = "") {
-
-                if (!path) return;
-
-                this.$router.push(path).catch(err => {
-                    console.error("Помилка роутингу:", err);
-                });
+                this.$router.push(path);
 
                 setTimeout(() => {
-                    const routeName = this.$route.name || "App";
-                    document.title = routeName;
-                }, 100);
+                    if (this.$route && this.$route.name) {
+                        this.title = this.$route.name;
+                        document.title = this.$route.name;
+                    }
+                }, 50);
             },
             toFormData(obj) { 
                 const fd = new FormData();
