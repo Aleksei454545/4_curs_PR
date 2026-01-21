@@ -75,15 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 50);
             },
             page(path = "") {
-                this.$router.push(path);
 
-                setTimeout(() => {
-                    if (this.$route && this.$route.name) {
-                        this.title = this.$route.name;
-                        document.title = this.$route.name;
-                    }
-                }, 50);
-            },
+            this.$router.push(path); 
+            
+            setTimeout(() => {
+                if (this.$route && this.$route.name) {
+                    document.title = this.$route.name;
+                }
+            }, 50);
+        },
             toFormData(obj) { 
                 const fd = new FormData();
                 for (const key in obj) {
