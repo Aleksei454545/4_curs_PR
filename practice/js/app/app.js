@@ -36,35 +36,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 router.isReady().then(() => {
-                    const userLocal = window.localStorage.getItem("user");
-                    if (userLocal) {
-                        self.user = JSON.parse(userLocal);
+                    if (window.localStorage.getItem("user")) {
+                        self.user = JSON.parse(window.localStorage.getItem("user"));
                         
                         const path = self.$route.path;
                         const isAdmin = self.user.type === "admin";
+                        const isManager = self.user.type === "manager";
 
                         if (path === "/" && isAdmin) {
                             self.page('/campaigns');
-                        } else if (path === "/campaigns" && !isAdmin) {
-                            self.page('/');
+                        } else if (['/campaigns', '/campaign', '/users', '/user'].includes(path) && !isAdmin) {
+                            self.page('/statistics');
+                        } else if (['/statistics', '/payments', '/sites'].includes(path) && isAdmin) {
+                            self.page('/campaigns');
+                        } else if (['/campaigns', '/campaign', '/users', '/user', '/statistics', '/payments', '/sites'].includes(path) && isManager) {
+                            self.page();
+                        } else if (!['/campaigns', '/campaign', '/users', '/user', '/statistics', '/payments', '/sites'].includes(path)) {
+                            self.page();
                         }
                     } else {
-
-                        if (self.$route.path !== '/') {
-                            self.page('/');
-                        }
+                        self.page('/');
                     }
                 });
             },
             logout() { 
-
                 this.user = { name: "", phone: "", email: "", date: "", auth: "" };
-                window.localStorage.removeItem("user");
-
+                window.localStorage.setItem("user", '');
                 this.page('/');
             },
+            scrollTop() {
+                setTimeout(() => {
+                    window.scroll({ top: 0, behavior: 'smooth' });
+                }, 50);
+            },
+            scrollBottom() { 
+                setTimeout(() => {
+                    window.scroll({ top: 1000, behavior: 'smooth' });
+                }, 50);
+            },
             page(path = "") {
-
                 this.$router.push(path);
 
                 setTimeout(() => {
@@ -72,9 +82,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.title = this.$route.name;
                         document.title = this.$route.name;
                     }
-                }, 50);
+                }, 0);
             },
+            toFormData(obj) { 
+                const fd = new FormData();
+                for (const key in obj) {
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                        if (typeof obj[key] === 'object' && key !== 'copy' && obj[key] !== null) {
 
+                            for (const subKey in obj[key]) {
+                                fd.append(`${key}[${subKey}]`, obj[key][subKey]);
+                            }
+                        } else if (key !== 'copy') {
+                            fd.append(key, obj[key]);
+                        }
+                    }
+                }
+                return fd;
+            }
         }
     };
 
