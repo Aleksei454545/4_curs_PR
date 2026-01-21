@@ -36,32 +36,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 router.isReady().then(() => {
-                    if (window.localStorage.getItem("user")) {
-                        self.user = JSON.parse(window.localStorage.getItem("user"));
+                    const userStr = window.localStorage.getItem("user");
+                    if (userStr) {
+                        self.user = JSON.parse(userStr);
                         
-                        const path = self.$route.path;
-                        const isAdmin = self.user.type === "admin";
-                        const isManager = self.user.type === "manager";
+                        // Используем currentRoute для получения чистого пути без учета подпапок GitHub
+                        const path = router.currentRoute.value.path;
+                        const type = self.user.type;
 
-                        if (path === "/" && isAdmin) {
+                        if (path === "/" && type === "admin") {
                             self.page('/campaigns');
-                        } else if (['/campaigns', '/campaign', '/users', '/user'].includes(path) && !isAdmin) {
+                        } else if (['/campaigns', '/campaign', '/users', '/user'].some(p => path.startsWith(p)) && type !== "admin") {
                             self.page('/statistics');
-                        } else if (['/statistics', '/payments', '/sites'].includes(path) && isAdmin) {
-                            self.page('/campaigns');
-                        } else if (['/campaigns', '/campaign', '/users', '/user', '/statistics', '/payments', '/sites'].includes(path) && isManager) {
-                            self.page();
-                        } else if (!['/campaigns', '/campaign', '/users', '/user', '/statistics', '/payments', '/sites'].includes(path)) {
-                            self.page();
                         }
+                        // Если мы уже на нужной странице, ничего не делаем
                     } else {
-                        self.page('/');
+                        // Если нет пользователя, всегда на логин
+                        if (router.currentRoute.value.path !== '/') {
+                            self.page('/');
+                        }
                     }
                 });
             },
-            logout() { 
+            
+            // Самое важное изменение для GitHub Pages
+            page(path = "") {
+                if (path) {
+                    // Используем router.push напрямую, он сам добавит # благодаря HashHistory
+                    router.push(path);
+                }
+                
+                setTimeout(() => {
+                    const routeName = router.currentRoute.value.name || "App";
+                    this.title = routeName;
+                    document.title = routeName;
+                }, 100);
+            },
+
+            logout() {
                 this.user = { name: "", phone: "", email: "", date: "", auth: "" };
-                window.localStorage.setItem("user", '');
+                window.localStorage.removeItem("user");
                 this.page('/');
             },
             scrollTop() {
