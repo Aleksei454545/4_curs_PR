@@ -10,29 +10,29 @@ export const login = {
             </div>
         </div>
     `,
-    data() {
-        return {
-            email: "",
-            password: "",
-            error: ""
-        };
-    },
-    methods: {
-        auth() {
-            if (this.email === "admin@test.com" && this.password === "admin") {
-                const userData = {
-                    name: "Admin",
-                    type: "admin",
-                    email: this.email,
-                    auth: true
-                };
+    // data() {
+    //     return {
+    //         email: "",
+    //         password: "",
+    //         error: ""
+    //     };
+    // },
+    // methods: {
+    //     auth() {
+    //         if (this.email === "admin@test.com" && this.password === "admin") {
+    //             const userData = {
+    //                 name: "Admin",
+    //                 type: "admin",
+    //                 email: this.email,
+    //                 auth: true
+    //             };
                 
-                window.localStorage.setItem("user", JSON.stringify(userData));
+    //             window.localStorage.setItem("user", JSON.stringify(userData));
                 
-                this.$root.init(); 
-            } else {
-                this.error = "Неверный логин или пароль";
-            }
-        }
-    }
+    //             this.$root.init(); 
+    //         } else {
+    //             this.error = "Неверный логин или пароль";
+    //         }
+    //     }
+    // }
 };
