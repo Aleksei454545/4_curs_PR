@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.title = this.$route.name;
                         document.title = this.$route.name;
                     }
-                }, 0);
+                }, 50);
             },
             toFormData(obj) { 
                 const fd = new FormData();
