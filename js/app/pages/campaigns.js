@@ -16,10 +16,15 @@ export const campaigns = {
     `,
     data() {
         return {
-            items: []
-        };
+            parent:"",
+        }
     },
     mounted() {
-        // Логика загрузки данных при открытии страницы
+       this.parent = this.$parent.$parent;
+
+       if (!this.parent.user) {
+        this.parent.logout();
     }
+
+},
 };

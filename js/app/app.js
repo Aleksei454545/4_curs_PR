@@ -2,7 +2,7 @@ import { router } from './router.js';
 // import { header } from './widgets/header.js';
 // import { search } from './widgets/search.js'; 
 // import { popup } from './widgets/popup.js';
-// import { msg } from './widgets/msg.js';
+import { msg } from './widgets/msg.js';
 // import { toggle } from './widgets/toggle.js'; 
 // import { img } from './widgets/img.js';
 
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const main = {
         data() {
             return {
-                url: 'http://localhost:3000/',
+                url: "http://affiliate.yanbasok.com",
                 user: { name: "", phone: "", email: "", date: "", auth: "" },
                 formData: {}, 
                 date: "",
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const app = Vue.createApp(main);
+    app.component('msg', msg);
     app.use(router);
     app.mount('#content');
 });

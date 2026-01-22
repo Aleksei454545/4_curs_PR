@@ -1,38 +1,77 @@
 export const login = {
-    template: `
-        <div class="login-page">
-            <div class="login-form">
-                <h2>Вход в систему</h2>
-                <input v-model="email" type="email" placeholder="Email" />
-                <input v-model="password" type="password" placeholder="Пароль" />
-                <button @click="auth">Войти</button>
-                <p v-if="error" class="error">{{ error }}</p>
-            </div>
-        </div>
-    `,
-    data() {
+    data: function() {
         return {
-            email: "",
-            password: "",
-            error: ""
-        };
+            img: 1,
+            parent: ''
+        }
+    },
+    mounted: function() {
+        this.img = this.randomIntFromInterval(1, 7);
+        this.parent = this.$parent.$parent;
     },
     methods: {
-        auth() {
-            if (this.email === "admin@test.com" && this.password === "admin") {
-                const userData = {
-                    name: "Admin",
-                    type: "admin",
-                    email: this.email,
-                    auth: true
-                };
-                
-                window.localStorage.setItem("user", JSON.stringify(userData));
-                
-                this.$root.init(); 
-            } else {
-                this.error = "Неверный логин или пароль";
-            }
-        }
-    }
-};
+        randomIntFromInterval: function (min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        },
+        login: function() {
+            var self = this;
+            var data = self.parent.toFormData(self.parent.formData);
+
+            axios.post(this.parent.url + "/site/login", data).then(function(response) {
+                if (response.data.error) {
+                    self.$refs.msg.alertFun(response.data.error);
+                }
+                if (response.data.user) {
+                    self.parent.user = response.data.user;
+                    self.parent.page('/campaigns');
+                    window.localStorage.setItem('user', JSON.stringify(self.parent.user));
+                }
+            }).catch(function(error) {
+                console.log('errors : ', error);
+            });
+        },
+
+    },
+        template: `
+        <div class="login-container">
+            <msg ref="msg" />
+            
+            <div class="header-overlay">
+            <h1>Affiliate Sign in</h1>
+                <div class="logo">
+                    <img :src="parent.url + '/app/views/images/logo.svg'" />
+                </div>
+
+            </div>
+
+            <div class="flex">
+                <div id="right-area" class="w60">
+                    <img :src="parent.url + '/app/views/images/Cover_' + img + '.jpg'" />
+                </div>
+
+                <div id="left-area" class="w40">
+                    <div class="form inner-form">
+                        <form @submit.prevent="login()" v-if="parent.formData">
+                            <div class="row">
+                                <label>Email</label>
+                                <input type="email" v-model="parent.formData.email" required>
+                            </div>
+
+                            <div class="row">
+                                <label>Password</label>
+                                <input type="password" v-model="parent.formData.password" required autocomplete="on">
+                            </div>
+
+                            <div class="row">
+                                <button class="btn">SIGN IN</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="footer-right">
+                        <span>BASOK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `};
