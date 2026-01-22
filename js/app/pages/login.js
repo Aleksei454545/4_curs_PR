@@ -68,9 +68,6 @@ export const login = {
                         </form>
                     </div>
 
-                    <div class="footer-right">
-                        <span>BASOK</span>
-                    </div>
                 </div>
             </div>
         </div>
