@@ -1,7 +1,7 @@
 import { router } from './router.js'; 
-// import { header } from './widgets/header.js';
+import { header } from './widgets/header.js';
 // import { search } from './widgets/search.js'; 
-// import { popup } from './widgets/popup.js';
+import { popup } from './widgets/popup.js';
 import { msg } from './widgets/msg.js';
 // import { toggle } from './widgets/toggle.js'; 
 // import { img } from './widgets/img.js';
@@ -104,6 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const app = Vue.createApp(main);
+    app.component('Header', header);
+    app.component('popup', popup);
     app.component('msg', msg);
     app.use(router);
     app.mount('#content');

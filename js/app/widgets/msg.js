@@ -7,9 +7,10 @@ export const msg = {
             t2:"",
             code:0,
             interval:""
+
         }
     },
-    wathch: {
+    watch: {
     },
     mounted() {
         this.parent = this.$parent.$parent.$parent;
@@ -63,15 +64,49 @@ export const msg = {
                     self.fadeOut(block, 1000);
                 }, 3000);
             }, 100);
+        },
+        confirmFun(title, text) {
+            this.code = 0;
+            var self = this;
+            return new Promise(function(resolve, reject) {
+                self.confirmTitle = title;
+                self.confirm = text;
+                self.$refs.confirm.active = 1;
+                self.interval = setInterval(function() {
+                    if (self.code > 0) resolve();
+                }, 100);
+
+            }).then(function() {
+                clearInterval(self.interval);
+                self.$refs.confirm.active = 0;
+                if (self.code == 1) {
+                    return true;
+                }
+                if (self.code == 2) {
+                    return false;
+                }
+            });
         }
     },
     template: `
     <div class="alertMsg" v-if="alert">
         <div class="wrapper al">
-        <i class="fas fa-times-circle"></i>{{alert}}
+            <i class="fas fa-times-circle"></i>{{alert}}
         </div>
-    </div class="successMsg" v-if="success">
-
     </div>
-    `
-};  
+    <div class="successMsg" v-if="success">
+        <div class="wrapper al">
+            <i class="fas fa-check-circle"></i>{{success}}
+        </div>
+    </div>
+    <popup ref="confirm" :title="confirmTitle">
+        <div class="al">
+            <i class="fas fa-info-circle"></i> Do you want to delete this campaign?{{confirm}}
+            <div class="botBtns">
+                <a class="btnS" href="#" @click.prevent="code=1">Yes</a>
+                <a class="btnS" href="#" @click.prevent="code=2">No</a>
+            </div>
+        </div>
+    </popup>
+    
+    `};  

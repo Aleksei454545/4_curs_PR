@@ -1,10 +1,13 @@
 @font-face {
     font-family: 'CustomFont';
-    src: url('./custom-font.woff2') format('woff2'); 
+    src: url('./font-awesome5.css') format('woff2'); 
     font-weight: normal;
     font-style: normal;
 }
-
+* {
+    text-decoration: none;
+    
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -16,8 +19,7 @@ html, body {
 
 .flex {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+
 }
 
 #right-area {
@@ -191,4 +193,211 @@ html, body {
     90% {opacity: 0.95; margin-left: -4%;}
     95% {opacity: 0.95; margin-left: -2%;}
     100% {opacity: 1; margin-left: 0;}
+}
+#spinner  {
+    background: #919fa640 url(./images/loader.gif) no-repeat center;
+    background-position: center;
+    background-size: 50px;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 99999;
+}
+.inner-container {
+    max-width: 1100px; 
+    margin: 0 auto;    
+}
+
+.header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.logout-btn {
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.panel h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+input[type="date"] {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.table {
+    border: 1px solid #eee;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1%;
+}
+
+th {
+    font-size: 11px;
+    color: #bbb;
+    text-transform: uppercase;
+    padding: 15px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+}
+
+.title-cell {
+    color: #000;
+}
+
+.ac { text-align: center; }
+.ar { text-align: right; }
+.al { text-align: left; }
+.id { width: 50px; color: #999; text-align: center; }
+.actions { width: 100px; text-align: center; }
+
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #000; 
+}
+
+.table td {
+    padding: 15px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+    color: #000 !important; 
+}
+
+.title-cell strong, 
+.table td a {
+    color: #000 !important; 
+    text-decoration: none;
+    font-weight: 700; 
+}
+
+.table th {
+    padding: 15px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    color: #000; 
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.w-title {
+    width: 45%; 
+    text-align: left;
+}
+
+.del-btn i {
+    color: #ccc; 
+    transition: color 0.2s;
+}
+
+.del-btn:hover i {
+    color: #e74c3c;
+}
+.w20 {
+    margin-left: 15%;
+}
+
+.popup-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+}
+
+.popup {
+    position: fixed;
+    z-index: 9999;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.head-popup {
+    background: #e9ecef; 
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.head-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #495057;
+    padding-left: 20px;
+    text-transform: none;
+}
+
+.head-popup a i {
+    color: #333;
+    font-size: 18px;
+}
+
+.popup-inner {
+    padding: 30px 25px;
+    font-size: 18px;
+    color: #333;
+}
+
+.popup-inner .fas.fa-info-circle {
+    margin-left: 5px;
+    color: #333;
+}
+
+.botBtns {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.btnS {
+    display: inline-block;
+    padding: 8px 25px;
+    background-color: #2ecc71; 
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s;
+}
+
+.btnS:hover {
+    background-color: #27ae60;
+}
+
+.al {
+    text-align: left;
 }
