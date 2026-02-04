@@ -403,6 +403,9 @@ td {
 
 
 
+
+
+
 .header {
     background-color: #333; 
     justify-content: space-between; 
@@ -622,4 +625,127 @@ input:checked + .slider:before {
     height: 4px; 
     background-color: #2ecc71; 
     border-radius: 2px 2px 0 0;
+}
+.tabs ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.tabs li {
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #718096;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tabs li:hover {
+    color: #4a5568;
+}
+
+.tabs li.active {
+    color: #3182ce;
+    border-bottom: 2px solid #3182ce;
+}
+.cubes {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.cubes > div {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cubes > div div:first-child {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a0aec0;
+    margin-bottom: 5px;
+}
+
+.cubes .clicks { border-left: 4px solid #00599D; }
+.cubes .views { border-left: 4px solid #5000B8; }
+.cubes .leads { border-left: 4px solid #48bb78; }
+.table {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #f8fafc;
+    padding: 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 700;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+.image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+.btnS {
+    background: #48bb78;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.btnS:hover {
+    background: #38a169;
+}
+
+input[type="date"], input[type="text"], input[type="number"] {
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    outline: none;
+    font-family: inherit;
+}
+
+input:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
