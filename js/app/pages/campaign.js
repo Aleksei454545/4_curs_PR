@@ -38,6 +38,12 @@ export const campaign = {
     <Header ref="header" />
     <div id="spinner" v-if="loader"></div>
     <div class="wrapper">
+    <div id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="menu">
+        </nav>
         <div class="flex panel">
             <div class="w20 ptb30">
                 <router-link to="/campaigns" class="btn-back">← Back</router-link>

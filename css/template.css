@@ -749,3 +749,562 @@ input:focus {
     border-color: #3182ce;
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
+
+/* --- Адаптивність --- */
+
+@media screen and (max-width: 1024px) {
+    .flex.panel {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .table {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .inner-container {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow: auto; 
+    }
+
+    #left-area, #right-area {
+        width: 100% !important;
+        height: auto !important;
+        position: static;
+    }
+
+    #right-area {
+        height: 300px !important;
+    }
+
+    .header-overlay {
+        width: 100%;
+        position: relative;
+    }
+
+    #menu ul {
+        flex-direction: column;
+        height: auto;
+        margin-left: 0;
+    }
+
+    #menu ul li {
+        height: 50px;
+        margin-left: 0;
+        border-bottom: 1px solid #444;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #user-top {
+        margin-left: 0;
+        padding: 15px 0;
+    }
+
+    .cubes {
+        flex-direction: column;
+    }
+
+    .table {
+        overflow-x: auto;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .inner-form {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .row label {
+        font-size: 14px;
+        text-align: left; 
+    }
+
+    .row input {
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .header-overlay h1 {
+        font-size: 18px;
+    }
+
+    .tabs li {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    @media screen and (max-height: 480px) {
+        #right-area { display: none; } 
+    }
+}
+#mobile-menu-btn {
+    display: none;
+    color: #bbb;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    #mobile-menu-btn {
+        display: block; 
+    }
+
+    #menu {
+        display: none; 
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background: #333;
+        z-index: 1000;
+        border-bottom: 2px solid #2ecc71;
+    }
+
+    #menu.active {
+        display: block;
+    }
+
+    #menu ul {
+        flex-direction: column !important;
+        margin-left: 0 !important;
+        height: auto !important;
+    }
+
+    #menu ul li {
+        width: 100%;
+        height: 60px !important;
+        border-bottom: 1px solid #444;
+    }
+
+    #menu ul li a {
+        width: 100%;
+        padding: 0 20px !important;
+    }
+
+    #menu ul li a.router-link-active::after {
+        display: none;
+    }
+    
+    #user-top {
+        margin-left: 0 !important;
+        padding-right: 20px;
+    }
+}
+@media screen and (max-width: 768px) {
+
+    .flex.panel {
+        flex-direction: column !important; 
+        align-items: flex-start !important;
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+        height: auto !important;
+    }
+
+    .w10, .w70, .w20 {
+        width: 100% !important; 
+        text-align: left !important;
+    }
+
+    .ptb30, .ptb20 {
+        padding: 10px 0 !important;
+    }
+
+    input[type="date"] {
+        width: 100% !important;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    #mobile-menu-btn {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 10001;
+        background: #2ecc71;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+    }
+
+    #menu {
+        display: none;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(34, 34, 34, 0.98) !important;
+        z-index: 10000;
+        padding-top: 60px;
+    }
+
+    #menu.active {
+        display: block !important;
+    }
+
+    #menu ul li a {
+        color: #fff !important;
+        font-size: 22px !important; 
+        padding: 20px !important;
+        border-bottom: 1px solid #444;
+    }
+}
+@media screen and (max-width: 768px) {
+
+    .table {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        overflow-x: auto !important; 
+        -webkit-overflow-scrolling: touch;
+        border-radius: 8px;
+    }
+
+    table {
+        min-width: 600px; 
+    }
+
+    th, td {
+        padding: 10px 8px !important;
+        font-size: 13px !important;
+    }
+
+    .id {
+        width: 30px !important;
+    }
+
+    @media screen and (max-width: 480px) {
+        .hide-mobile {
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .flex.panel {
+        display: block !important; 
+        padding: 20px 15px !important;
+    }
+
+    .w10, .w70, .w20 {
+        width: 100% !important; 
+        text-align: left !important;
+        display: block !important;
+    }
+
+    .btnS, .btn {
+        width: 100%; 
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    input[type="date"] {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+.popup-back {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 9998;
+}
+
+
+.popup {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; 
+    width: 90%;
+    max-width: 500px; 
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .popup {
+        width: 95% !important;
+        max-height: 90vh; 
+        overflow-y: auto; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .popup {
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important; 
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+    }
+
+    .popup-inner {
+        padding: 20px 15px !important;
+    }
+
+    .row input, .row select, .row textarea {
+        height: 45px !important;
+        font-size: 16px !important; 
+    }
+
+    .botBtns {
+        display: flex;
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    .btnS, .btn {
+        width: 100% !important;
+        padding: 15px !important;
+        text-align: center;
+    }
+    
+    .head-popup {
+        padding: 15px !important;
+    }
+}
+
+.ac img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+
+    .popup-back {
+        display: block !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        background: #fff !important; 
+    }
+
+
+    .popup {
+        position: absolute !important; 
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        transform: none !important; 
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .popup-inner {
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .cubes {
+        display: flex !important;
+        flex-wrap: wrap !important; 
+        gap: 5px !important;
+    }
+
+    .cubes > div {
+        width: 48% !important; 
+        margin-bottom: 5px !important;
+        padding: 10px 5px !important;
+        font-size: 12px !important;
+    }
+
+    .filchart {
+        width: 100% !important;
+        margin-top: 20px !important;
+    }
+}
+/* --- 1. ДЛЯ КОМП'ЮТЕРІВ --- */
+@media screen and (min-width: 769px) {
+    /* Повністю приховуємо мобільні елементи */
+    #mobile-menu-btn, #mobile-menu {
+        display: none !important;
+    }
+
+    /* Показуємо звичайне меню в хедері */
+    header #menu { 
+        display: flex !important; 
+    }
+}
+
+/* --- 2. ДЛЯ МОБІЛОК (iPhone тощо) --- */
+@media screen and (max-width: 768px) {
+    /* Приховуємо десктопне меню в хедері */
+    header #menu { 
+        display: none !important; 
+    }
+
+    /* Налаштовуємо кнопку бургера */
+    #mobile-menu-btn {
+        display: block !important;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+        background: #2ecc71;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    /* Налаштовуємо саме мобільне меню */
+    #mobile-menu {
+        display: none; /* Сховано за замовчуванням */
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #222;
+        z-index: 999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Показуємо при кліку */
+    #mobile-menu.active {
+        display: flex !important;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    /* 1. Маленька кнопка бургер-меню */
+    #mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        width: 38px; /* Зменшено з 45px */
+        height: 38px;
+        z-index: 16000;
+        background: #2ecc71;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* 2. Контейнер меню з легшим фоном */
+    #mobile-menu {
+        display: none;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 15000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+    }
+
+    #mobile-menu.active {
+        display: flex !important;
+    }
+
+    /* 3. Компактний логотип */
+    .mobile-menu-logo {
+        margin-bottom: 30px; /* Зменшено відступ */
+    }
+
+    /* 4. Компактний список */
+    #mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 260px; /* Зменшено ширину */
+    }
+
+    #mobile-menu ul li {
+        margin-bottom: 8px; /* Менша відстань між пунктами */
+    }
+
+    /* 5. Маленькі кнопки меню */
+    #mobile-menu ul li a {
+        display: flex;
+        align-items: center;
+        padding: 12px 18px; /* Зменшено внутрішні відступи */
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 16px; /* Зменшено шрифт з 20px */
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Іконки теж менші */
+    #mobile-menu ul li a i {
+        margin-right: 12px;
+        width: 20px;
+        font-size: 18px; /* Зменшено іконки */
+        color: #2ecc71;
+    }
+
+    /* Стан натискання */
+    #mobile-menu ul li a:active,
+    #mobile-menu ul li a.router-link-active {
+        background: #2ecc71;
+        border-color: #2ecc71;
+    }
+
+    #mobile-menu ul li a:active i,
+    #mobile-menu ul li a.router-link-active i {
+        color: #fff;
+    }
+
+    /* Logout ще компактніший */
+    .logout-item {
+        margin-top: 15px;
+    }
+
+    .logout-item a {
+        padding: 10px 18px !important;
+        font-size: 14px !important;
+        opacity: 0.8;
+    }
+}

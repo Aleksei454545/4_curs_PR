@@ -12,7 +12,8 @@ export const campaigns = {
             iChart:-1,
             id:0,
             type:0,
-            all:true
+            all:true,
+            menuActive: false // Стан для мобільного меню
         }
     },
     mounted:function() {
@@ -27,6 +28,9 @@ export const campaigns = {
         //this.GetFirstAndLastDate();
     },
     methods:{
+        toggleMenu: function() {
+            this.menuActive = !this.menuActive;
+        },
         GetFirstAndLastDate:function() {
             var year = new Date().getFullYear();
             var month = new Date().getMonth();
@@ -222,6 +226,19 @@ export const campaigns = {
     <Header ref="header" />
     <div id="spinner" v-if="loader"></div>
     <div class="wrapper">
+    <div id="mobile-menu-btn" @click="toggleMenu">
+            <i class="fas" :class="menuActive ? 'fa-times' : 'fa-bars'"></i>
+        </div>
+
+        <nav id="mobile-menu" :class="{ active: menuActive }">
+            <div class="mobile-menu-logo">
+                <img :src="parent.url + '/assets/img/logo.png'" v-if="parent.url" style="width: 50px;">
+            </div>
+            <ul>
+                <li><a href="#/campaigns" class="router-link-active" @click="menuActive = false"><i class="fas fa-bullhorn"></i> Campaigns</a></li>
+                <li><a href="#/users" @click="menuActive = false"><i class="fas fa-ad"></i> Users</a></li>
+            </ul>
+        </nav>
         <div class="flex panel" >
             <div class="w20 ptb30">
                 <h1>Campaigns</h1>

@@ -9,7 +9,8 @@ export const user = {
             date: "",
             date2: "",
             iChart: -1,
-            loader: 1
+            loader: 1,
+       
         }
     },
     mounted: function() {
@@ -25,6 +26,7 @@ export const user = {
         this.GetFirstAndLastDate();
     },
     methods: {
+
         GetFirstAndLastDate: function() {
             var year = new Date().getFullYear();
             var month = new Date().getMonth();
@@ -287,6 +289,12 @@ template: `
     <div id="spinner" v-if="loader"></div>
     <div class="panelTop">
         <div class="wrapper">
+        <div id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="menu">
+        </nav>
             <div class="flex">
                 <div class="w30 ptb30 pb0">
                     <h1 v-if="data && data.info">{{data.info.user}}</h1>

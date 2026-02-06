@@ -5,7 +5,8 @@ export const users = {
             data: {},
             loader: 1,
             type: 0,
-            uid: -1
+            uid: -1,
+            menuActive: false // Стан для мобільного меню
         }
     },
     mounted: function() {
@@ -18,6 +19,9 @@ export const users = {
         this.get();
     },
     methods: {
+                toggleMenu: function() {
+            this.menuActive = !this.menuActive;
+        },
         get: function() {
             var self = this;
             var data = self.parent.toFormData(self.parent.formData);
@@ -89,6 +93,19 @@ template: `
         <header ref="header" />
         <div id="spinner" v-if="loader"></div>
         <div class="wrapper">
+        <div id="mobile-menu-btn" @click="toggleMenu">
+            <i class="fas" :class="menuActive ? 'fa-times' : 'fa-bars'"></i>
+        </div>
+
+        <nav id="mobile-menu" :class="{ active: menuActive }">
+            <div class="mobile-menu-logo">
+                <img :src="parent.url + '/assets/img/logo.png'" v-if="parent.url" style="width: 50px;">
+            </div>
+            <ul>
+                <li><a href="#/campaigns" class="router-link-active" @click="menuActive = false"><i class="fas fa-bullhorn"></i> Campaigns</a></li>
+                <li><a href="#/users" @click="menuActive = false"><i class="fas fa-ad"></i> Users</a></li>
+            </ul>
+        </nav>
             <div class="flex panel">
                 <div class="w10 ptb30">
                     <h1>Users</h1>
